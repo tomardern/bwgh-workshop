@@ -1,8 +1,38 @@
 on: push
   
 jobs:
+  good_morning:    
+    runs-on: ubuntu-latest    
+    name: Install
+        
+    steps:
+      - name: Checkout local repo on this branch
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          path: ./
+      
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.npm
+            ./node_modules/
+            ./node_modules/.cache
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+            
+
+      - name: NPM Install
+        run: npm install
+        
+        
   hello_world:    
     runs-on: ubuntu-latest
+    needs: "good_morning"
     env:
       FAV_LANGUAGE:  ${{ secrets.MY_FAVOURITE }}
     name: Check for missing translations
@@ -12,16 +42,25 @@ jobs:
     steps:
       - name: Checkout local repo on this branch
         uses: actions/checkout@v2
-
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          path: ./
+      
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.npm
+            ./node_modules/
+            ./node_modules/.cache
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+          
+      - name: NPM Install
+        run: npm install
+        
       - run: echo "${{matrix.language}} - is the best language ever" > ${{matrix.language}}.txt
         
-  goodbye:    
-    runs-on: ubuntu-latest    
-    name: List files
-    needs: "hello_world"
-        
-    steps:
-      - name: Checkout local repo on this branch
-        uses: actions/checkout@v2
-
-      - run: ls
