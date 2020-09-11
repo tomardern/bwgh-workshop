@@ -1,0 +1,12 @@
+on: push
+  
+jobs:
+  hello_world:
+    runs-on: ubuntu-latest
+    name: Check for missing translations
+    steps:
+      - name: Checkout local repo on this branch
+        uses: actions/checkout@v2
+      - name: First actual step
+        run: |
+          echo "Hello Workshop"
