@@ -1,12 +1,18 @@
 on: push
   
 jobs:
-  hello_world:
+  hello_world:    
     runs-on: ubuntu-latest
+    env:
+      FAV_LANGUAGE:  "java"
     name: Check for missing translations
     steps:
       - name: Checkout local repo on this branch
         uses: actions/checkout@v2
-      - name: First actual step
-        run: |
-          echo "Hello Workshop"
+
+      - run: echo "hello $FAV_LANGUAGE - is the best language ever" > favourite.txt
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: this-is-my-world
+          path: favourite.txt
