@@ -4,7 +4,7 @@ jobs:
   hello_world:    
     runs-on: ubuntu-latest
     env:
-      FAV_LANGUAGE:  "java"
+      FAV_LANGUAGE:  ${{ secrets.MY_FAVOURITE }}
     name: Check for missing translations
     steps:
       - name: Checkout local repo on this branch
@@ -16,3 +16,18 @@ jobs:
         with:
           name: this-is-my-world
           path: favourite.txt
+          
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      
+      - name: Dump job context
+        env:
+          JOB_CONTEXT: ${{ toJson(job) }}
+        run: echo "$JOB_CONTEXT"
+      
+      - name: Dump steps context
+        env:
+          STEPS_CONTEXT: ${{ toJson(steps) }}
+        run: echo "$STEPS_CONTEXT"
