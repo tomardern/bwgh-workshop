@@ -1,0 +1,41 @@
+{
+  "name": "contentful-server",
+  "version": "1.0.0",
+  "description": "Serverless webpack example using Typescript",
+  "main": "dist/handler.js",
+  "scripts": {
+  },
+  "dependencies": {
+    "@slack/web-api": "^5.0.1",
+    "aws-sdk": "^2.726.0",
+    "clone": "^2.1.2",
+    "contentful": "^7.14.6",
+    "contentful-export": "^7.10.6",
+    "contentful-import": "^7.9.4",
+    "contentful-management": "^6.0.3",
+    "copy-webpack-plugin": "^6.0.3",
+    "jstransformer": "^1.0.0",
+    "jstransformer-markdown-it": "^2.1.0",
+    "pug": "^3.0.0",
+    "reflect-metadata": "^0.1.13",
+    "source-map-support": "^0.5.19",
+    "tsyringe": "^4.3.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.59",
+    "@types/jest": "^26.0.7",
+    "@types/node": "^14.0.26",
+    "file-loader": "^6.0.0",
+    "jest": "^26.2.2",
+    "serverless": "^1.77.0",
+    "serverless-offline": "^6.5.0",
+    "serverless-pseudo-parameters": "^2.5.0",
+    "serverless-webpack": "^5.3.3",
+    "ts-jest": "^26.1.4",
+    "ts-loader": "^8.0.1",
+    "typescript": "^3.9.7",
+    "webpack": "^4.44.0"
+  },
+  "author": "The serverless webpack authors (https://github.com/elastic-coders/serverless-webpack)",
+  "license": "MIT"
+}
