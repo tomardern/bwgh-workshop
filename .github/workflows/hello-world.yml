@@ -11,21 +11,7 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           path: ./
-      
-      - name: Cache node modules
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.npm
-            ./node_modules/
-            ./node_modules/.cache
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-            
-
+                
       - name: NPM Install
         run: npm install
         
@@ -46,18 +32,6 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
           path: ./
       
-      - name: Cache node modules
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.npm
-            ./node_modules/
-            ./node_modules/.cache
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
           
       - name: NPM Install
         run: npm install
